@@ -1,2 +1,1 @@
-# Tic_Tac_Toe_Game
-mini game
+# whack_a_mole_react
