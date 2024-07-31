@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
 
+window.initGame = (React, assetsUrl) => {
+  const { useState, useEffect } = React;
 const TicTacToe = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [currentPlayer, setCurrentPlayer] = useState('X');
@@ -46,7 +47,8 @@ const TicTacToe = () => {
       {winner && <div className="result">{winner} wins!</div>}
       {!winner && board.every(cell => cell) && <div className="result">It's a tie!</div>}
     </div>
-  );
+      };
+      };
 };
 
 export default TicTacToe;
