@@ -2,12 +2,11 @@
 window.initGame = (React, assetsUrl) => {
   const { useState } = React;
 
-  // Initialise  tic tac toe game
+  // Initialise the tic tac toe
   const TicTacToe = ({ assetsUrl }) => {
     const [board, setBoard] = useState(Array(9).fill(null));
     const [currentPlayer, setCurrentPlayer] = useState('X');
 
-    // handle the onClick event
     const handleClick = (index) => {
       if (board[index] === null) {
         const newBoard = [...board];
@@ -54,8 +53,8 @@ window.initGame = (React, assetsUrl) => {
               className: `cell ${cell === 'X' ? 'x' : cell === 'O' ? 'o' : ''}`,
               onClick: () => handleClick(index)
             },
-            index === 'X' ? React.createElement('img', { src: cross.png, alt: 'Cross' }) :
-            index === 'O' ? React.createElement('img', { src: circle.png, alt: 'Circle' }) : null
+            cell === 'X' ? React.createElement('img', { src: `${assetsUrl}/cross.png`, alt: 'cross' }) : 
+            cell === 'O' ? React.createElement('img', { src: `${assetsUrl}/circle.png`, alt: 'circle' }) : null
           )
         )
       ),
@@ -63,7 +62,8 @@ window.initGame = (React, assetsUrl) => {
     );
   };
 
-  return () => React.createElement(TicTacToe, { assetsUrl: assetsUrl });
+  // Render TicTacToe component directly
+  return React.createElement(TicTacToe, { assetsUrl: assetsUrl });
 };
 
 console.log('Tic-Tac-Toe game script loaded');
