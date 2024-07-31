@@ -50,8 +50,8 @@ window.initGame = (React, assetsUrl) => {
               className: `cell ${cell === 'X' ? 'x' : cell === 'O' ? 'o' : ''}`,
               onClick: () => handleClick(index)
             },
-           React.createElement('img', { src: `${assetsUrl}/$cross.png`, alt: cross},
-             {src: `${assetsUrl}/$circle.png`, alt: circle}) 
+           cell === 'X' ? React.createElement('img', { src: `${assetsUrl}/cross.png`, alt: 'cross' }) : 
+            React.createElement('img', { src: `${assetsUrl}/circle.png`, alt: 'circle' })
           )
         )
       ),
