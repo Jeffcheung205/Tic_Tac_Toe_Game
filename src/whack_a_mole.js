@@ -56,7 +56,7 @@ window.initGame = (React, assetsUrl) => {
           )
         ),
       )
-      winner && React.createElement('div', { className: "result" }, `${winner} wins!`)
+      winner  React.createElement('div', { className: "result" }, `${winner} wins!`)
     );
   };
  return React.createElement(TicTacToe, { assetsUrl: assetsUrl });
