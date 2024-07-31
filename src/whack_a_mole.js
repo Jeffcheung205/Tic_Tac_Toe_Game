@@ -62,8 +62,8 @@ window.initGame = (React, assetsUrl) => {
     );
   };
 
-  // Render TicTacToe component directly
-  return React.createElement(TicTacToe, { assetsUrl: assetsUrl });
+  // Return a function that creates the TicTacToe component
+  return () => React.createElement(TicTacToe, { assetsUrl: assetsUrl });
 };
 
 console.log('Tic-Tac-Toe game script loaded');
