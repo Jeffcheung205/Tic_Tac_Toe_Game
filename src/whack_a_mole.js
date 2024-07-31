@@ -2,8 +2,12 @@
 window.initGame = (React, assetsUrl) => {
   const { useState } = React;
 
-  // Initialise the tic tac toe
+  // Initialise  tic tac toe game
   const TicTacToe = ({ assetsUrl }) => {
+    const [board, setBoard] = useState(Array(9).fill(null));
+    const [currentPlayer, setCurrentPlayer] = useState('X');
+
+    // handle the onClick event
     const handleClick = (index) => {
       if (board[index] === null) {
         const newBoard = [...board];
@@ -30,7 +34,6 @@ window.initGame = (React, assetsUrl) => {
       if (board.every(cell => cell !== null)) {
         return 'Tie';
       }
-
       return null;
     };
 
@@ -42,7 +45,7 @@ window.initGame = (React, assetsUrl) => {
       React.createElement('h2', null, "Tic Tac Toe"),
       React.createElement(
         'div',
-        { className: "board" },
+        { className: "game-board" },
         board.map((cell, index) =>
           React.createElement(
             'div',
@@ -51,8 +54,8 @@ window.initGame = (React, assetsUrl) => {
               className: `cell ${cell === 'X' ? 'x' : cell === 'O' ? 'o' : ''}`,
               onClick: () => handleClick(index)
             },
-            index === 'X' ? React.createElement('img', { src: `${assetsUrl}/cross.png`, alt: 'cross' }) :
-              React.createElement('img', { src: `${assetsUrl}/circle.png`, alt: 'circle' })
+            cell === 'X' ? React.createElement('img', { src: `${assetsUrl}/cross.png`, alt: 'cross' }) :
+            cell === 'O' ? React.createElement('img', { src: `${assetsUrl}/circle.png`, alt: 'circle' }) : null
           )
         )
       ),
@@ -60,6 +63,7 @@ window.initGame = (React, assetsUrl) => {
     );
   };
 
-  return React.createElement(TicTacToe, { assetsUrl: assetsUrl });
+  return () => React.createElement(TicTacToe, { assetsUrl: assetsUrl });
 };
+
 console.log('Tic-Tac-Toe game script loaded');
