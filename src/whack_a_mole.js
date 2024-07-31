@@ -3,6 +3,7 @@ window.initGame = (React, assetsUrl) => {
   const { useState } = React;
 
   // Initialise the tic tac toe
+   const TicTacToe = ({  assetsUrl })  => {
     const handleClick = (index) => {
       if (board[index] === null) {
         const newBoard = [...board];
@@ -50,11 +51,11 @@ window.initGame = (React, assetsUrl) => {
               className: `cell ${cell === 'X' ? 'x' : cell === 'O' ? 'o' : ''}`,
               onClick: () => handleClick(index)
             },
-           cell === 'X' ? React.createElement('img', { src: `${assetsUrl}/cross.png`, alt: 'cross' }) : 
+           index !== 'X' ? React.createElement('img', { src: `${assetsUrl}/cross.png`, alt: 'cross' }) : 
             React.createElement('img', { src: `${assetsUrl}/circle.png`, alt: 'circle' })
           )
         )
-      ),
+      )
       winner && React.createElement('div', { className: "result" }, `${winner} wins!`)
     );
   };
