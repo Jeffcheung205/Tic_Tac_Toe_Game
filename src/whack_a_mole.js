@@ -58,7 +58,6 @@ window.initGame = (React, assetsUrl) => {
       winner && React.createElement('div', { className: "result" }, `${winner} wins!`)
     );
   };
-
-  return React.createElement(TicTacToe, { assetsUrl: assetsUrl });
+ return React.createElement(TicTacToe, { assetsUrl: assetsUrl });
 };
 console.log('Tic-Tac-Toe game script loaded');
