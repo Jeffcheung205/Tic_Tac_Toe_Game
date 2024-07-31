@@ -3,24 +3,18 @@
 window.initGame = (React, assetsUrl) => {
   const { useState, useEffect } = React;
 
-  const WhackAMole = ({ assetsUrl }) => {
-    const [score, setScore] = useState(0);
-    const [activeMole, setActiveMole] = useState(null);
+  const TicTacToe = ({ assetsUrl }) => {
+    const [board, setBoard] = useState(Array(9).fill(null));
+    const [currentPlayer, setCurrentPlayer] = useState('X');
 
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setActiveMole(Math.floor(Math.random() * 9));
-      }, 1000);
-      return () => clearInterval(interval);
-    }, []);
-
-    const whackMole = (index) => {
-      if (index === activeMole) {
-        setScore(score + 1);
-        setActiveMole(null);
+    const handleClick = (index) => {
+      if (board[index] === null) {
+        const newBoard = [...board];
+        newBoard[index] = currentPlayer;
+        setBoard(newBoard);
+        setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X');
       }
     };
-
     return React.createElement(
       'div',
       { className: "whack-a-mole" },
