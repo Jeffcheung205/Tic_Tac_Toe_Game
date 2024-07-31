@@ -1,4 +1,3 @@
-
 window.initGame = (React, assetsUrl) => {
   const { useState, useEffect } = React;
 const TicTacToe = () => {
