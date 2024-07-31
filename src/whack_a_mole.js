@@ -1,11 +1,8 @@
+// tic-tac-toe.js
 window.initGame = (React, assetsUrl) => {
   const { useState } = React;
 
   // Initialise the tic tac toe
-  const TicTacToe = ({ assetsUrl }) => {
-    const [board, setBoard] = useState(Array(9).fill(null));
-    const [currentPlayer, setCurrentPlayer] = useState('X');
-
     const handleClick = (index) => {
       if (board[index] === null) {
         const newBoard = [...board];
