@@ -36,6 +36,29 @@ function minimax(board, player, isMaximizing) {
   }
 }
 
+function getBestMove(board, player) {
+  let bestMove = null;
+  let bestScore = isMaximizing ? -Infinity : Infinity;
+
+  for (let i = 0; i < board.length; i++) {
+    if (!board[i]) {
+      const newBoard = [...board];
+      newBoard[i] = player;
+      const score = minimax(newBoard, player, false); // Pass 'false' for minimizing player
+
+      if (player === 'O' && score > bestScore) { // Maximize for 'O'
+        bestScore = score;
+        bestMove = i;
+      } else if (player === 'X' && score < bestScore) { // Minimize for 'X'
+        bestScore = score;
+        bestMove = i;
+      }
+    }
+  }
+
+  return bestMove;
+}
+
 // function to determine the win move for AI
 function AIWinMove(board, player) {
   for (let i = 0; i < board.length; i++) {
