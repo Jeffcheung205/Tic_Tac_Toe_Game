@@ -12,7 +12,7 @@ function minimax(board, player, isMaximizing) {
   }
 
   if (isMaximizing) {
-    let bestScore = -Infinity;
+    let bestScore = Infinity;
     for (let i = 0; i < board.length; i++) {
       if (!board[i]) {
         const newBoard = [...board];
