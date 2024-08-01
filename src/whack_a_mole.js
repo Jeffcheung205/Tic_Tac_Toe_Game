@@ -36,6 +36,13 @@ window.initGame = (React, assetsUrl) => {
       }
     };
 
+    // Reset the game
+    const resetGame = () => {
+      setBoard(Array(9).fill(null));
+      setCurrentPlayer('X');
+      setWinner(null);
+    };
+
     return React.createElement(
       'div',
       { className: "tic-tac-toe" },
@@ -59,7 +66,12 @@ window.initGame = (React, assetsUrl) => {
           )
         )
       ),
-      winner && React.createElement('p', null, winner === 'Tie' ? "It's a Tie!" : `${winner} wins!`)
+      winner && React.createElement('p', null, winner === 'Tie' ? "It's a Tie!" : `${winner} wins!`),
+      React.createElement(
+        'button',
+        { onClick: resetGame, style: { marginTop: '20px', padding: '10px 20px', fontSize: '16px' } },
+        "Reset Game"
+      )
     );
   };
 
