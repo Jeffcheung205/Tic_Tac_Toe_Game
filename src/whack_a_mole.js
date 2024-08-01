@@ -1,5 +1,5 @@
 // Minimax algorithm to determine the best move
-export function minimax(board, player, isMaximizing) {
+function minimax(board, player, isMaximizing) {
   const result = calculateWinner(board);
   const scores = {
     X: 1,
@@ -37,7 +37,7 @@ export function minimax(board, player, isMaximizing) {
 }
 
 // Function to check if there is a winning move available for the AI
-export function findWinningMove(board, player) {
+ function findWinningMove(board, player) {
   for (let i = 0; i < board.length; i++) {
     if (!board[i]) {
       const newBoard = [...board];
@@ -131,7 +131,7 @@ window.initGame = (React, assetsUrl) => {
     return React.createElement(
       'div',
       { className: "tic-tac-toe" },
-      React.createElement('h2', null, "Tic Tac Toe"),
+      React.createElement('h2', null, "Tic-Tac-Toe"),
       React.createElement(
         'div',
         { className: "game-board" },
@@ -154,7 +154,7 @@ window.initGame = (React, assetsUrl) => {
       winner && React.createElement('p', null, winner === 'Tie' ? "It's a Tie!" : `${winner} wins!`),
       React.createElement(
         'button',
-        { onClick: resetGame, style: { marginTop: '20px', padding: '10px 20px', fontSize: '16px' } },
+        { onClick: resetGame },
         "Reset Game"
       )
     );
