@@ -12,14 +12,14 @@ function minimax(board, player, isMaximizing) {
   }
 
   if (isMaximizing) {
-    let bestScore = Infinity;
+    let bestScore = - Infinity;
     for (let i = 0; i < board.length; i++) {
       if (!board[i]) {
         const newBoard = [...board];
         newBoard[i] = player;
         const score = minimax(newBoard, player, false);
         bestScore = Math.max(score, bestScore);
-      }
+      } 
     }
     return bestScore; // Return the best score for maximizing player
   } else {
