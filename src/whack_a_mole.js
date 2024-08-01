@@ -11,13 +11,14 @@ function minimax(board, player, isMaximizing) {
     return scores[result];
   }
 
+
   if (isMaximizing) {
     let bestScore = -Infinity;
     for (let i = 0; i < board.length; i++) {
       if (!board[i]) {
         const newBoard = [...board];
         newBoard[i] = player;
-        const score = minimax(newBoard, player, false);
+        const score = minimax(newBoard, player, false); // Switch to minimizing player
         bestScore = Math.max(score, bestScore);
       }
     }
@@ -27,8 +28,8 @@ function minimax(board, player, isMaximizing) {
     for (let i = 0; i < board.length; i++) {
       if (!board[i]) {
         const newBoard = [...board];
-        newBoard[i] = player === 'X' ? 'O' : 'X';
-        const score = minimax(newBoard, player, true);
+        newBoard[i] = player === 'X' ? 'O' : 'X'; // Switch to maximizing player
+        const score = minimax(newBoard, player, true); // Switch to maximizing player
         bestScore = Math.min(score, bestScore);
       }
     }
@@ -133,7 +134,7 @@ window.initGame = (React, assetsUrl) => {
       if (currentPlayer === 'O' && !winner) {
         // Check for a winning move for the AI
         const winningMove = AIWinMove(board, 'O');
-        if (winningMove !== null) {
+        if ( winningMove !== null) {
           const newBoard = board.slice();
           newBoard[winningMove] = 'O';
           setBoard(newBoard);
