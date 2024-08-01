@@ -14,9 +14,17 @@ window.initGame = (React, assetsUrl) => {
       const newBoard = board.slice();
       newBoard[index] = currentPlayer;
       setBoard(newBoard);
+      checkWinner(newBoard);   
+  if (!winner) {
+    const aiMove = getBestMove(newBoard, currentPlayer === 'X' ? 'O' : 'X');
+    if (aiMove !== null) {
+      newBoard[aiMove] = currentPlayer === 'X' ? 'O' : 'X';
+      setBoard(newBoard);
       checkWinner(newBoard);
-      setCurrentPlayer('X'); // Switch to opponent
-    };
+    }
+  }
+ setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X');
+};
 
     const checkWinner = (squares) => {
       const lines = [
