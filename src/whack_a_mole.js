@@ -56,6 +56,17 @@ window.initGame = (React, assetsUrl) => {
       setWinner(null);
     };
 
+      useEffect(() => {
+      if (currentPlayer === 'O' && !winner) {
+        const move = getBestMove(board, 'O');
+        const newBoard = board.slice();
+        newBoard[move] = 'O';
+        setBoard(newBoard);
+        checkWinner(newBoard);
+        setCurrentPlayer('X'); // Switch back to player
+      }
+    }, [currentPlayer, board, winner]);
+  
     return React.createElement(
       'div',
       { className: "tic-tac-toe" },
