@@ -1,5 +1,5 @@
 // Minimax algorithm to determine the best move
-export function minimax(board, player, isMaximizing) {
+function minimax(board, player, isMaximizing) {
   const result = calculateWinner(board);
   const scores = {
     X: 1,
@@ -37,7 +37,7 @@ export function minimax(board, player, isMaximizing) {
 }
 
 // Function to find the best move for the AI
-export function getBestMove(board, player) {
+function getBestMove(board, player) {
   const availableMoves = [];
   for (let i = 0; i < board.length; i++) {
     if (!board[i]) {
@@ -61,7 +61,7 @@ export function getBestMove(board, player) {
 }
 
 // Function to calculate the winner
-export function calculateWinner(squares) {
+ function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
