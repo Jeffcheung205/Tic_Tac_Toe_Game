@@ -35,9 +35,22 @@ function minimax(board, player, isMaximizing) {
     return bestScore; // Return the best score for minimizing opponent
   }
 }
+ let bestMove = null;
+  for (let i = 0; i < availableMoves.length; i++) {
+    const move = availableMoves[i];
+    const newBoard = [...board];
+    newBoard[move] = player;
+    const score = minimax(newBoard, player, false);
+    if (score > bestScore) {
+      bestScore = score;
+      bestMove = move;
+    }
+  }
+  return bestMove; // Return the best move for maximizing player
+}
 
 // Function to check if there is a winning move available for the AI
- function findWinningMove(board, player) {
+ function AIWinMove(board, player) {
   for (let i = 0; i < board.length; i++) {
     if (!board[i]) {
       const newBoard = [...board];
@@ -49,6 +62,8 @@ function minimax(board, player, isMaximizing) {
   }
   return null; // Return null if no winning move is found
 }
+
+
 
 // Function to calculate the winner
 function calculateWinner(squares) {
@@ -108,8 +123,8 @@ window.initGame = (React, assetsUrl) => {
 
     useEffect(() => {
       if (currentPlayer === 'O' && !winner) {
-        // Check for a winning move for the AI
-        const winningMove = findWinningMove(board, 'O');
+        // Determine the winning move for AI
+        const winningMove = AIWinMove(board, 'O');
         if (winningMove !== null) {
           const newBoard = board.slice();
           newBoard[winningMove] = 'O';
