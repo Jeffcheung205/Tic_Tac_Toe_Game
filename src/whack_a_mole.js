@@ -1,5 +1,5 @@
 // Minimax algorithm to determine the best move
-function minimax(board, player, isMaximizing) {
+export function minimax(board, player, isMaximizing) {
   const result = calculateWinner(board);
   const scores = {
     X: 1,
@@ -10,7 +10,6 @@ function minimax(board, player, isMaximizing) {
   if (result) {
     return scores[result];
   }
-
 
   if (isMaximizing) {
     let bestScore = -Infinity;
@@ -37,31 +36,8 @@ function minimax(board, player, isMaximizing) {
   }
 }
 
-function getBestMove(board, player) {
-  let bestMove = null;
-  let bestScore = isMaximizing ? -Infinity : Infinity;
-
-  for (let i = 0; i < board.length; i++) {
-    if (!board[i]) {
-      const newBoard = [...board];
-      newBoard[i] = player;
-      const score = minimax(newBoard, player, false); // Pass 'false' for minimizing player
-
-      if (player === 'O' && score > bestScore) { // Maximize for 'O'
-        bestScore = score;
-        bestMove = i;
-      } else if (player === 'X' && score < bestScore) { // Minimize for 'X'
-        bestScore = score;
-        bestMove = i;
-      }
-    }
-  }
-
-  return bestMove;
-}
-
-// function to determine the win move for AI
-function AIWinMove(board, player) {
+// Function to check if there is a winning move available for the AI
+export function findWinningMove(board, player) {
   for (let i = 0; i < board.length; i++) {
     if (!board[i]) {
       const newBoard = [...board];
@@ -75,7 +51,7 @@ function AIWinMove(board, player) {
 }
 
 // Function to calculate the winner
-function calculateWinner(squares) {
+export function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -133,8 +109,8 @@ window.initGame = (React, assetsUrl) => {
     useEffect(() => {
       if (currentPlayer === 'O' && !winner) {
         // Check for a winning move for the AI
-        const winningMove = AIWinMove(board, 'O');
-        if ( winningMove !== null) {
+        const winningMove = findWinningMove(board, 'O');
+        if (winningMove !== null) {
           const newBoard = board.slice();
           newBoard[winningMove] = 'O';
           setBoard(newBoard);
@@ -178,12 +154,12 @@ window.initGame = (React, assetsUrl) => {
       winner && React.createElement('p', null, winner === 'Tie' ? "It's a Tie!" : `${winner} wins!`),
       React.createElement(
         'button',
-        { onClick: resetGame},
+        { onClick: resetGame, style: { marginTop: '20px', padding: '10px 20px', fontSize: '16px' } },
         "Reset Game"
       )
     );
   };
- return () => React.createElement(TicTacToe, { assetsUrl: assetsUrl });
-};
 
+  return () => React.createElement(TicTacToe, { assetsUrl: assetsUrl });
+};
 console.log('Tic Tac Toe game script loaded');
