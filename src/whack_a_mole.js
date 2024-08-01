@@ -132,7 +132,7 @@ window.initGame = (React, assetsUrl) => {
     useEffect(() => {
       if (currentPlayer === 'O' && !winner) {
         // Check for a winning move for the AI
-        const winningMove = findWinningMove(board, 'O');
+        const winningMove = AIWinMove(board, 'O');
         if (winningMove !== null) {
           const newBoard = board.slice();
           newBoard[winningMove] = 'O';
