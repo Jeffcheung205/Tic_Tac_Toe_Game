@@ -178,7 +178,7 @@ window.initGame = (React, assetsUrl) => {
       React.createElement(
         'button',
         { onClick: resetGame },
-        "Reset Game"
+        "Reset"
       )
     );
   };
