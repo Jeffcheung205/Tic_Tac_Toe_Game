@@ -35,7 +35,17 @@ function minimax(board, player, isMaximizing) {
     return bestScore; // Return the best score for minimizing opponent
   }
 }
- let bestMove = null;
+
+ function getBestMove(board, player) {
+  const availableMoves = [];
+  for (let i = 0; i < board.length; i++) {
+    if (!board[i]) {
+      availableMoves.push(i);
+    }
+  }
+
+  let bestScore = -Infinity;
+  let bestMove = null;
   for (let i = 0; i < availableMoves.length; i++) {
     const move = availableMoves[i];
     const newBoard = [...board];
@@ -49,7 +59,7 @@ function minimax(board, player, isMaximizing) {
   return bestMove; // Return the best move for maximizing player
 }
 
-// Function to check if there is a winning move available for the AI
+// Function to determine a winning move available for the AI
  function AIWinMove(board, player) {
   for (let i = 0; i < board.length; i++) {
     if (!board[i]) {
@@ -62,8 +72,6 @@ function minimax(board, player, isMaximizing) {
   }
   return null; // Return null if no winning move is found
 }
-
-
 
 // Function to calculate the winner
 function calculateWinner(squares) {
