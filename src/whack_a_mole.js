@@ -36,30 +36,19 @@ function minimax(board, player, isMaximizing) {
   }
 }
 
-// Function to find the best move for the AI
-function getBestMove(board, player) {
-  const availableMoves = [];
+// Function to find the winning move for  AI
+function AIWinMove(board, player) {
   for (let i = 0; i < board.length; i++) {
     if (!board[i]) {
-      availableMoves.push(i);
+      const newBoard = [...board];
+      newBoard[i] = player;
+      if (calculateWinner(newBoard) === player) {
+        return i; // Return the index of the winning move
+      }
     }
   }
-
-  let bestScore = -Infinity;
-  let bestMove = null;
-  for (let i = 0; i < availableMoves.length; i++) {
-    const move = availableMoves[i];
-    const newBoard = [...board];
-    newBoard[move] = player;
-    const score = minimax(newBoard, player, false);
-    if (score > bestScore) {
-      bestScore = score;
-      bestMove = move;
-    }
-  }
-  return bestMove; // Return the best move for maximizing player
+  return null; // Return null if no winning move is found
 }
-
 // Function to calculate the winner
  function calculateWinner(squares) {
   const lines = [
