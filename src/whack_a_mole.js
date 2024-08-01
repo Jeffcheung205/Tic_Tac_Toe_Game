@@ -15,7 +15,7 @@ window.initGame = (React, assetsUrl) => {
       newBoard[index] = currentPlayer;
       setBoard(newBoard);
       checkWinner(newBoard);
-      setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X');
+      setCurrentPlayer('X'); // Switch to opponent
     };
 
     const checkWinner = (squares) => {
@@ -33,6 +33,20 @@ window.initGame = (React, assetsUrl) => {
       }
       if (!squares.includes(null)) {
         setWinner('Tie');
+      }
+    };
+
+    // AI Opponent
+     const opponentMove = () => {
+      let availableMoves = board.map((cell, index) => (cell === null ? index : null)).filter(index => index !== null);
+      if (availableMoves.length > 0) {
+        const randomIndex = Math.floor(Math.random() * availableMoves.length);
+        const move = availableMoves[randomIndex];
+        const newBoard = board.slice();
+        newBoard[move] = 'X'; 
+        setBoard(newBoard);
+        checkWinner(newBoard);
+        setCurrentPlayer('O'); // Switch back to player
       }
     };
 
