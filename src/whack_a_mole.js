@@ -15,7 +15,6 @@ window.initGame = (React, assetsUrl) => {
       newBoard[index] = currentPlayer;
       setBoard(newBoard);
       checkWinner(newBoard);   
-      setCurrentPlayer('X'); // switch to AI Opponent
 };
 
     const checkWinner = (squares) => {
