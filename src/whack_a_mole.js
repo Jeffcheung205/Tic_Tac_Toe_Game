@@ -12,14 +12,14 @@ function minimax(board, player, isMaximizing) {
   }
 
   if (isMaximizing) {
-    let bestScore = - Infinity;
+    let bestScore = -Infinity;
     for (let i = 0; i < board.length; i++) {
       if (!board[i]) {
         const newBoard = [...board];
         newBoard[i] = player;
         const score = minimax(newBoard, player, false);
         bestScore = Math.max(score, bestScore);
-      } 
+      }
     }
     return bestScore; // Return the best score for maximizing player
   } else {
@@ -36,7 +36,7 @@ function minimax(board, player, isMaximizing) {
   }
 }
 
-// Function to find the winning move for  AI
+// function to determine the win move for AI
 function AIWinMove(board, player) {
   for (let i = 0; i < board.length; i++) {
     if (!board[i]) {
@@ -49,8 +49,9 @@ function AIWinMove(board, player) {
   }
   return null; // Return null if no winning move is found
 }
+
 // Function to calculate the winner
- function calculateWinner(squares) {
+function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -87,7 +88,7 @@ window.initGame = (React, assetsUrl) => {
       newBoard[index] = currentPlayer;
       setBoard(newBoard);
       checkWinner(newBoard);
-      setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X'); // Switch players
+      setCurrentPlayer('O'); // Switch to AI
     };
 
     const checkWinner = (squares) => {
@@ -107,12 +108,23 @@ window.initGame = (React, assetsUrl) => {
 
     useEffect(() => {
       if (currentPlayer === 'O' && !winner) {
-        const move = getBestMove(board, 'O');
-        const newBoard = board.slice();
-        newBoard[move] = 'O';
-        setBoard(newBoard);
-        checkWinner(newBoard);
-        setCurrentPlayer('X'); // Switch back to player
+        // Check for a winning move for the AI
+        const winningMove = findWinningMove(board, 'O');
+        if (winningMove !== null) {
+          const newBoard = board.slice();
+          newBoard[winningMove] = 'O';
+          setBoard(newBoard);
+          checkWinner(newBoard);
+          setCurrentPlayer('X'); // Switch back to player
+        } else {
+          // If no winning move, use minimax to find the best move
+          const move = getBestMove(board, 'O');
+          const newBoard = board.slice();
+          newBoard[move] = 'O';
+          setBoard(newBoard);
+          checkWinner(newBoard);
+          setCurrentPlayer('X'); // Switch back to player
+        }
       }
     }, [currentPlayer, board, winner]);
 
@@ -143,12 +155,11 @@ window.initGame = (React, assetsUrl) => {
       React.createElement(
         'button',
         { onClick: resetGame},
-        "Reset"
+        "Reset Game"
       )
     );
   };
-
-  return () => React.createElement(TicTacToe, { assetsUrl: assetsUrl });
+ return () => React.createElement(TicTacToe, { assetsUrl: assetsUrl });
 };
 
 console.log('Tic Tac Toe game script loaded');
