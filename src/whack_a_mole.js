@@ -1,11 +1,14 @@
+// tic-tac-toe.js
 window.initGame = (React, assetsUrl) => {
   const { useState } = React;
-
+  
+// Initialize the tic-tac-toe game
   const TicTacToe = ({ assetsUrl }) => {
     const [board, setBoard] = useState(Array(9).fill(null));
     const [currentPlayer, setCurrentPlayer] = useState('X');
     const [winner, setWinner] = useState(null);
 
+    // Handle the onClick event
     const handleClick = (index) => {
       if (board[index] || winner) return; // Ignore if cell is filled or game is won
       const newBoard = board.slice();
@@ -36,7 +39,7 @@ window.initGame = (React, assetsUrl) => {
     return React.createElement(
       'div',
       { className: "tic-tac-toe" },
-      React.createElement('h2', null, "Tic Tac Toe"),
+      React.createElement('h2', null, "Tic-Tac-Toe"),
       React.createElement(
         'div',
         { className: "game-board" },
