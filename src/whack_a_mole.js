@@ -140,13 +140,23 @@ window.initGame = (React, assetsUrl) => {
           checkWinner(newBoard);
           setCurrentPlayer('X'); // Switch back to player
         } else {
-          // If no winning move, use minimax to find the best move
-          const move = getBestMove(board, 'O');
-          const newBoard = board.slice();
-          newBoard[move] = 'O';
-          setBoard(newBoard);
-          checkWinner(newBoard);
-          setCurrentPlayer('X'); // Switch back to player
+          // Check if the player has a winning move and block it
+          const blockMove = findWinningMove(board, 'X');
+          if (blockingMove !== null) {
+            const newBoard = board.slice();
+            newBoard[blockMove] = 'O';
+            setBoard(newBoard);
+            checkWinner(newBoard);
+            setCurrentPlayer('X'); // Switch back to player
+          } else {
+            // If no winning or blocking move, use minimax to find the best move
+            const move = getBestMove(board, 'O');
+            const newBoard = board.slice();
+            newBoard[move] = 'O';
+            setBoard(newBoard);
+            checkWinner(newBoard);
+            setCurrentPlayer('X'); // Switch back to player
+          }
         }
       }
     }, [currentPlayer, board, winner]);
