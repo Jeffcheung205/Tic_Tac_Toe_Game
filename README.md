@@ -1,1 +1,1 @@
-# whack_a_mole_react
+# tic_tac_toe
