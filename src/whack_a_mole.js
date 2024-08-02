@@ -141,7 +141,7 @@ window.initGame = (React, assetsUrl) => {
           setCurrentPlayer('X'); // Switch back to player
         } else {
           // Check if the player has a winning move and block it
-          const blockMove = findWinningMove(board, 'X');
+          const blockMove = AIWinMove(board, 'X');
           if (blockingMove !== null) {
             const newBoard = board.slice();
             newBoard[blockMove] = 'O';
