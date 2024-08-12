@@ -1,2 +1,2 @@
-A tic tac toe mini game.
+# A tic tac toe mini game.
 
