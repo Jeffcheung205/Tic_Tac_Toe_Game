@@ -1,1 +1,2 @@
-# tic_tac_toe
+A tic tac toe mini game.
+
